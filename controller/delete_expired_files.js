@@ -17,6 +17,7 @@ function deleteExpiredFiles() {
         }
 
         files.forEach((file) => {
+            console.log(file)
             // Extract timestamp and delete-after-days from the file name
             const match = file.match(/-(\d+)-\d+_(\d+)\./);
             const filePath = path.join(uploadsDir, file);

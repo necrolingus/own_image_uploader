@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Select your image</h1>
+
+    <form id="upload-form" method="POST" enctype="multipart/form-data">
+        <!-- Label for password input -->
+        <label for="upload-secret">Secret</label>
+        <input type="password" name="upload-secret" id="upload-secret" required />
+
+        <!-- Label for delete after days input -->
+        <label for="delete-after-days">Delete After (Days)</label>
+        <input type="number" name="delete-after-days" id="delete-after-days" placeholder="Delete After (Days)" required />
+
+        <input type="file" name="image" required />
+        <button type="submit">Upload</button>
+    </form>
+
+    <br />
+    <!-- Area for displaying the response -->
+    <div id="response-message"></div>
+
+</div>

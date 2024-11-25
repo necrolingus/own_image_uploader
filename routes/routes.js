@@ -11,7 +11,7 @@ const deleteAfterDaysValue = config.deleteAfterDays
 
 //Multer custom storage for a proper file name
 //The order in which you send your fields from your HTML is super imporant!
-//Multer will stop processing once it gets a file, so file must always be last
+//Multer will stop processing once it gets a file, so file must always be submitted last in your form
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, uploads)
@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
         if (!Number.isInteger(Number(deleteAfterDays))) {
             deleteAfterDays = deleteAfterDaysValue
         }
-        if (deleteAfterDays > 120){
+        if (deleteAfterDays > 120 || deleteAfterDays < 1){ //must be 1 or more
             deleteAfterDays = deleteAfterDaysValue
         }
 
@@ -61,7 +61,7 @@ router.post('/store-image', upload.single('image'), async function(req,res) {
         const fileName = req.file.filename
         const fullFilePath = `${originalUrl}/${folder}/${fileName}`
 
-        res.send(`File uploaded successfully as a ${fullFilePath}`);
+        res.send(`${fullFilePath}`);
 
     } catch (error) {
         console.log(error)
