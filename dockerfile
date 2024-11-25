@@ -15,6 +15,9 @@ RUN npm install --production
 # Bundle app source
 COPY . .
 
+# Create the 'uploads' folder to store files
+RUN mkdir -p /usr/src/app/uploads
+
 #my code says express must run on port 3000
 EXPOSE 3000
 CMD [ "node", "index.js" ]
