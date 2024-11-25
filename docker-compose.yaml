@@ -1,5 +1,5 @@
 # docker-compose.yml
-version: '3.8'
+version: '3'
 services:
   own_image_uploader:
     image: ghcr.io/necrolingus/own_image_uploader:latest
@@ -7,3 +7,8 @@ services:
     env_file: stack.env
     ports:
       - 3065:3000
+    volumes:
+      - theuploadfolder:/usr/src/app/uploads
+
+volumes:
+  theuploadfolder: 
