@@ -2,7 +2,7 @@
 version: '3.8'
 services:
   own_image_uploader:
-    image: dont_email_passwords:latest
+    image: own_image_uploader:latest
     restart: unless-stopped
     env_file: stack.env
     ports:
