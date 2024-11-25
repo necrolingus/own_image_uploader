@@ -2,13 +2,8 @@
 version: '3.8'
 services:
   own_image_uploader:
-    image: own_image_uploader:latest
+    image: ghcr.io/necrolingus/own_image_uploader:latest
     restart: unless-stopped
     env_file: stack.env
     ports:
       - 3065:3000
-    volumes:
-      - uploads:/usr/src/app
-
-volumes:
-  uploads:
