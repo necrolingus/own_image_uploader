@@ -8,6 +8,7 @@ const router = express.Router()
 const uploads = config.uploadFolder
 const uploadSecretValue = config.uploadSecretValue
 const deleteAfterDaysValue = config.deleteAfterDays
+const deleteAfterDaysMaxValue = config.deleteAfterDaysMax
 
 //Multer custom storage for a proper file name
 //The order in which you send your fields from your HTML is super imporant!
@@ -22,8 +23,11 @@ const storage = multer.diskStorage({
         if (!Number.isInteger(Number(deleteAfterDays))) {
             deleteAfterDays = deleteAfterDaysValue
         }
-        if (deleteAfterDays > 120 || deleteAfterDays < 1){ //must be 1 or more
+        if (deleteAfterDays < 1){
             deleteAfterDays = deleteAfterDaysValue
+        }
+        if (deleteAfterDays > deleteAfterDaysMaxValue){
+            deleteAfterDays = deleteAfterDaysMaxValue
         }
 
         const parts = file.originalname.split('.')
