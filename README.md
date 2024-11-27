@@ -25,5 +25,8 @@ Check it out [https://oiu.leighonline.net/documentation](https://oiu.leighonline
 ## 🤩 Try it out!
 But read the documentation first 🎓😎
 
-### User Interface
 [https://oiu.leighonline.net/ui/](https://oiu.leighonline.net/ui)  🎉🥳🎊🎁
+
+![image](https://github.com/user-attachments/assets/3789639d-f629-4ee4-9d4c-0e12e99a7791)
+
+
