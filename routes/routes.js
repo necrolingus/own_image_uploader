@@ -1,8 +1,8 @@
 import express from 'express'
 import multer from 'multer'
-import {fileTypeFromBuffer} from 'file-type';
+import { fileTypeFromBuffer } from 'file-type';
 import fs from 'fs/promises'
-import {config} from '../controller/config.js'
+import { config } from '../controller/config.js'
 
 const router = express.Router()
 const uploads = config.uploadFolder
@@ -23,10 +23,10 @@ const storage = multer.diskStorage({
         if (!Number.isInteger(Number(deleteAfterDays))) {
             deleteAfterDays = deleteAfterDaysValue
         }
-        if (deleteAfterDays < 1){
+        if (deleteAfterDays < 1) {
             deleteAfterDays = deleteAfterDaysValue
         }
-        if (deleteAfterDays > deleteAfterDaysMaxValue){
+        if (deleteAfterDays > deleteAfterDaysMaxValue) {
             deleteAfterDays = deleteAfterDaysMaxValue
         }
 
@@ -41,10 +41,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 //upload.single: Accepts a single file with the name "fieldname". The single file will be stored in req.file.
-router.post('/store-image', upload.single('image'), async function(req,res) {
+router.post('/store-image', upload.single('image'), async function (req, res) {
     try {
         const uploadSecret = req.body['upload-secret']
-        if (!uploadSecret || (uploadSecret !== uploadSecretValue)){
+        if (!uploadSecret || (uploadSecret !== uploadSecretValue)) {
             return res.status(401).send("Not authorized")
         }
 
@@ -61,7 +61,7 @@ router.post('/store-image', upload.single('image'), async function(req,res) {
         const protocol = req.protocol
         const host = req.get('host')
         const originalUrl = `${protocol}://${host}`
-        const folder = req.file.destination; 
+        const folder = req.file.destination;
         const fileName = req.file.filename
         const fullFilePath = `${originalUrl}/${folder}/${fileName}`
 
@@ -73,4 +73,4 @@ router.post('/store-image', upload.single('image'), async function(req,res) {
     }
 })
 
-export {router}
+export { router }

@@ -1,69 +1,368 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
+/* ===== Design Tokens ===== */
+:root {
+    --neon-blue: #00f3ff;
+    --neon-pink: #ff00ff;
+    --neon-green: #39ff14;
+    --dark-bg: #111111;
+    --darker-bg: #111111;
+    --text-white: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.55);
+    --border-white: rgba(255, 255, 255, 0.15);
+    --border-focus: rgba(0, 243, 255, 0.5);
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --glass-bg-hover: rgba(255, 255, 255, 0.08);
 }
 
-/* Center the container both vertically and horizontally */
+/* ===== Reset ===== */
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    background-color: var(--dark-bg);
+    color: var(--text-white);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== Dotted Grid Background ===== */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+}
+
+/* ===== Glassmorphic Container ===== */
 .container {
+    width: 100%;
+    max-width: 540px;
+    padding: 2.6rem 2.8rem;
+    margin: 1.3rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid var(--border-white);
+    box-shadow:
+        0 0 30px rgba(0, 243, 255, 0.07),
+        0 0 60px rgba(0, 243, 255, 0.03);
+    text-align: center;
+}
+
+/* ===== Typography ===== */
+h1 {
+    font-weight: 300;
+    font-size: 1.95rem;
+    margin-bottom: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-white);
+    text-shadow:
+        0 0 12px var(--neon-blue),
+        0 0 30px rgba(0, 243, 255, 0.3);
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 1.7rem;
+    margin-bottom: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-white);
+    text-shadow:
+        0 0 12px var(--neon-blue),
+        0 0 30px rgba(0, 243, 255, 0.3);
+}
+
+h4 {
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    margin-top: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+}
+
+label {
+    display: block;
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    margin-top: 1.2rem;
+    text-align: left;
+}
+
+/* ===== Form Layout ===== */
+form > div {
+    margin-bottom: 0.6rem;
+}
+
+/* ===== Text Inputs ===== */
+input[type="password"],
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    background: transparent;
+    border: 1px solid var(--border-white);
+    border-radius: 15px;
+    color: var(--text-white);
+    transition: 0.3s;
+}
+
+input[type="password"]::placeholder,
+input[type="number"]::placeholder,
+input[type="text"]::placeholder {
+    color: var(--text-muted);
+}
+
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow:
+        0 0 12px rgba(0, 243, 255, 0.25),
+        0 0 30px rgba(0, 243, 255, 0.08);
+}
+
+/* ===== File Input ===== */
+.file-input-wrapper {
+    position: relative;
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+}
+
+.file-input-label {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    background-color: #f4f4f4; /* Light gray background */
+    padding: 1.6rem 1.2rem;
+    border: 1px dashed var(--border-white);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
     text-align: center;
-    padding: 20px;
+    margin-top: 0;
+    text-transform: none;
+    letter-spacing: normal;
 }
 
-h1 {
-    margin-bottom: 20px;
-    font-size: 2rem;
-    color: #333;
+.file-input-label:hover {
+    border-color: var(--neon-blue);
+    background: var(--glass-bg-hover);
+    box-shadow:
+        0 0 12px rgba(0, 243, 255, 0.15),
+        0 0 30px rgba(0, 243, 255, 0.05);
 }
 
-form {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.file-input-label .file-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.6rem;
+    filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.4));
+}
+
+.file-input-label .file-text {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.file-input-label .file-name {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--neon-blue);
+    text-shadow: 0 0 6px rgba(0, 243, 255, 0.4);
+    margin-top: 0.4rem;
+    word-break: break-all;
+}
+
+.file-input-wrapper input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 400px; /* Make the form responsive */
-}
-
-input[type="password"],
-input[type="number"],
-input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
+    height: 100%;
+    opacity: 0;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
+/* ===== Buttons ===== */
+button {
+    width: 100%;
+    padding: 14px 26px;
+    background: transparent;
+    border: 1px solid var(--border-white);
+    border-radius: 30px;
+    color: var(--text-white);
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 0.6rem;
 }
 
+button:hover {
+    background: var(--neon-blue);
+    color: var(--dark-bg);
+    border-color: var(--neon-blue);
+    box-shadow:
+        0 0 20px var(--neon-blue),
+        0 0 40px rgba(0, 243, 255, 0.3);
+    font-weight: 500;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* ===== Response Message ===== */
+#response-message {
+    margin-top: 1.6rem;
+    padding: 1.3rem 1.6rem;
+    border-radius: 12px;
+    display: none;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+#response-message.success {
+    border: 1px solid var(--neon-blue);
+    background: rgba(0, 243, 255, 0.05);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+}
+
+#response-message.error {
+    border: 1px solid var(--neon-pink);
+    background: rgba(255, 0, 255, 0.05);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.1);
+}
+
+#response-text {
+    font-size: 1.05rem;
+    font-weight: 400;
+    word-break: break-all;
+}
+
+#response-message.success #response-text {
+    color: var(--neon-blue);
+    text-shadow: 0 0 6px rgba(0, 243, 255, 0.3);
+}
+
+#response-message.error #response-text {
+    color: var(--neon-pink);
+    text-shadow: 0 0 6px rgba(255, 0, 255, 0.3);
+}
+
+#copy-btn {
+    margin-top: 1rem;
+    width: auto;
+    padding: 10px 26px;
+    font-size: 0.95rem;
+    border-color: var(--neon-pink);
+}
+
+#copy-btn:hover {
+    background: var(--neon-pink);
+    color: var(--dark-bg);
+    border-color: var(--neon-pink);
+    box-shadow:
+        0 0 20px var(--neon-pink),
+        0 0 40px rgba(255, 0, 255, 0.3);
+}
+
+/* ===== Error Page ===== */
+.error-container {
+    text-align: center;
+}
+
+.error-container h2 {
+    color: var(--neon-pink);
+    text-shadow:
+        0 0 15px var(--neon-pink),
+        0 0 40px rgba(255, 0, 255, 0.3);
+    font-size: 2rem;
+}
+
+.error-container p {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    margin-top: 1rem;
+}
+
+.error-container a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-weight: 400;
+    text-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
+    transition: 0.3s;
+}
+
+.error-container a:hover {
+    text-shadow: 0 0 15px var(--neon-blue);
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 600px) {
-    h1 {
-        font-size: 1.5rem;
+    .container {
+        padding: 1.8rem 1.4rem;
+        margin: 0.8rem;
+        border-radius: 15px;
     }
 
-    form {
-        width: 90%;
+    h1 {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    label {
+        font-size: 0.95rem;
+    }
+
+    input[type="password"],
+    input[type="number"],
+    input[type="text"] {
+        padding: 12px 16px;
+        font-size: 1rem;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+
+    .file-input-label {
+        padding: 1.2rem 1rem;
+    }
+
+    #response-text {
+        font-size: 0.95rem;
     }
 }
