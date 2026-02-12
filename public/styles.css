@@ -20,7 +20,7 @@
 
 body {
     margin: 0;
-    padding: 0;
+    padding: 3rem 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     background-color: var(--dark-bg);
@@ -28,7 +28,27 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+}
+
+/* ===== GitHub Link ===== */
+.github-link {
+    margin-top: -0.8rem;
+    margin-bottom: 1.6rem;
+}
+
+.github-link a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 6px rgba(0, 243, 255, 0.3);
+    transition: 0.3s;
+}
+
+.github-link a:hover {
+    text-shadow: 0 0 15px var(--neon-blue), 0 0 30px rgba(0, 243, 255, 0.3);
 }
 
 /* ===== Dotted Grid Background ===== */
