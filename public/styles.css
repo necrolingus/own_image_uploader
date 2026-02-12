@@ -14,13 +14,15 @@
 }
 
 /* ===== Reset ===== */
-*, ::before, ::after {
+*,
+::before,
+::after {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    padding: 3rem 0;
+    padding: 10rem 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     background-color: var(--dark-bg);
@@ -128,7 +130,7 @@ label {
 }
 
 /* ===== Form Layout ===== */
-form > div {
+form>div {
     margin-bottom: 0.6rem;
 }
 
