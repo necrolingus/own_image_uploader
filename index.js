@@ -1,11 +1,11 @@
 import express from 'express'
-import {engine} from 'express-handlebars'
-import {router} from './routes/routes.js'
-import {uiRouter} from './routes/uiRoutes.js'
-import {config} from './controller/config.js'
-import {headers} from './middleware/headers.js'
-import {globalLimiter} from './middleware/rateLimit.js'
-import {startFileCleanup} from './controller/delete_expired_files.js'
+import { engine } from 'express-handlebars'
+import { router } from './routes/routes.js'
+import { uiRouter } from './routes/uiRoutes.js'
+import { config } from './controller/config.js'
+import { headers } from './middleware/headers.js'
+import { globalLimiter } from './middleware/rateLimit.js'
+import { startFileCleanup } from './controller/delete_expired_files.js'
 
 const app = new express()
 const port = config.port
@@ -15,7 +15,7 @@ const uploads = config.uploadFolder
 app.use(express.urlencoded({ extended: true }));
 
 //handle x-forwarded-for header and other security stuff
-app.set('trust proxy', config.rl_number_of_proxies)
+app.set('trust proxy', parseInt(config.rl_number_of_proxies) || 1);
 app.use(globalLimiter)
 app.disable('x-powered-by')
 app.use(headers)
